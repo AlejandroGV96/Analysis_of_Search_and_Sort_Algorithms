@@ -1,33 +1,4 @@
-#include<iostream>
-#include "chrono.cpp"
-
-enum MatrixInfo
-{
-	bubble = 0,
-	selection,
-	insertion,
-	quick,
-	mergeTopDown,
-	mergeBottomUp,
-	linearSearch,
-	BinarySearch,
-
-	ordered = 0,
-	reversed,
-	random,
-
-	n1 = 0,
-	n2,
-	n3,
-	n4,
-	n5,
-	n6,
-};
-
-typedef std::unique_ptr<int[]> sixSizesArrays; // n1 - n6 data sizes
-typedef std::unique_ptr<sixSizesArrays[]> typeOfData; // ordered, reverse and 'random'
-typedef std::unique_ptr<typeOfData[]> algorithms; // algorithms that will sort stored data
-typedef std::unique_ptr<algorithms[]> fullDataStructure; // Data Matrix containing all data
+#include"myDefs.h"
 
 /// <summary>
 ///		Function that will fill the data arrays with values depending on its type ( ordered, reversed or 'random')
@@ -38,7 +9,7 @@ typedef std::unique_ptr<algorithms[]> fullDataStructure; // Data Matrix containi
 /// <param name="nArr"> Brach of data size</param>
 /// <param name="size"> Size available for storage</param>
 void matrixValFiller(fullDataStructure& Matrix, int& alg, int& type, int &nArr, unsigned int& size) {
-	for (int k = 0; k < size; k++) {
+	for (size_t k = 0; k < size; k++) {
 		switch (type) {
 		case ordered:
 			Matrix[alg][type][nArr][k] = k + 1;
@@ -82,10 +53,10 @@ int main() {
 				}
 			}
 		}
-
-		std::cout << DataMatrix[insertion][ordered][n6][9000000] << std::endl;
-
-
+		//PrintArray(DataMatrix[insertion][random][n4], size[3]);
+		//std::cout << DataMatrix[insertion][ordered][n6][9000000] << std::endl;
+		BubbleSort(DataMatrix[insertion][random][n3], size[2]);
+		//PrintArray(DataMatrix[insertion][random][n4], size[3]);
 
 		std::cin.get();
 
