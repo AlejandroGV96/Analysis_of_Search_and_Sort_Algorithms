@@ -1,6 +1,5 @@
 #pragma once
 #include<iostream>
-#include"chrono.cpp"
 
 enum MatrixInfo
 {
@@ -30,14 +29,16 @@ typedef std::unique_ptr<sixSizesArrays[]> typeOfData; // ordered, reverse and 'r
 typedef std::unique_ptr<typeOfData[]> algorithms; // algorithms that will sort stored data
 typedef std::unique_ptr<algorithms[]> fullDataStructure; // Data Matrix containing all data
 
+class Timer;
+
 template<typename T>
-void PrintArray(T& arr, int length);
+void PrintArray(T& arr, size_t length);
 
 template<typename T>
 void SwapValues(T& x, T& y);
 
 template<typename T>
-void BubbleSort(T& arr, int length);
+void BubbleSort(T& arr, size_t length);
 
 // IMPLEMENTATIONS
-#include"algorithms.hpp"
+#include"algorithms.hpp" // includes Timer implementation (chrono.hpp)

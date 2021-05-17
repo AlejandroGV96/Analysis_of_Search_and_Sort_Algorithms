@@ -152,7 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\algorithms.hpp" />
-    <ClCompile Include="src\chrono.cpp" />
+    <ClCompile Include="src\chrono.hpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>

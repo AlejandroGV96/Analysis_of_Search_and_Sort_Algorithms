@@ -8,7 +8,7 @@
 /// <param name="type"> Branch of type of data</param>
 /// <param name="nArr"> Brach of data size</param>
 /// <param name="size"> Size available for storage</param>
-void matrixValFiller(fullDataStructure& Matrix, int& alg, int& type, int &nArr, unsigned int& size) {
+void matrixValFiller(fullDataStructure& Matrix, size_t& alg, size_t& type, size_t&nArr, size_t& size) {
 	for (size_t k = 0; k < size; k++) {
 		switch (type) {
 		case ordered:
@@ -28,7 +28,7 @@ int main() {
 
 
 	// possibility to define custom data sizes
-	unsigned int size[6]{100, 1000, 10000, 100000, 1000000, 10000000};
+	size_t size[6]{100, 1000, 10000, 100000, 1000000, 10000000};
 	//for (auto i = 0; i < 6; i++) {
 	//	std::cin >> size[i];
 	//}
@@ -37,26 +37,24 @@ int main() {
 
 		fullDataStructure DataMatrix = std::make_unique<algorithms[]>(8);
 
-		for (auto i = 0; i < 8; ++i) {
+		for (size_t i = 0; i < 8; ++i) {
 			std::cout << "Initializing " << i + 1 << "# set of arrays" << std::endl;
 			Timer timer; // setting benchmarking timer
 			DataMatrix[i] = std::make_unique<typeOfData[]>(3);
 
 			std::srand(1); // reseting randomizer
 
-			for (auto j = 0; j < 3; ++j) {
+			for (size_t j = 0; j < 3; ++j) {
 				DataMatrix[i][j] = std::make_unique<sixSizesArrays[]>(6);
 
-				for (auto n = 0; n < 6; ++n) {
+				for (size_t n = 0; n < 6; ++n) {
 					DataMatrix[i][j][n] = std::make_unique<int[]>(size[n]);
 						matrixValFiller(DataMatrix, i, j, n, size[n]);
 				}
 			}
 		}
-		//PrintArray(DataMatrix[insertion][random][n4], size[3]);
-		//std::cout << DataMatrix[insertion][ordered][n6][9000000] << std::endl;
-		BubbleSort(DataMatrix[insertion][random][n3], size[2]);
-		//PrintArray(DataMatrix[insertion][random][n4], size[3]);
+
+		BubbleSort(DataMatrix[bubble][ordered][n3], size[n3]);
 
 		std::cin.get();
 
