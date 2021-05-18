@@ -1,7 +1,21 @@
 #pragma once
-#include"chrono.hpp"
+#include "myDefs.h"
+#include "chrono.hpp"
 
-// Function to Print an array
+template<typename T>
+void PrintArray(T& arr, size_t length);
+
+template<typename T>
+void SwapValues(T& x, T& y);
+
+template<typename T>
+void BubbleSort(T& arr, size_t length);
+
+
+
+
+// ---------------------IMPLEMENTATIONS--------------------------
+
 template<typename T>
 void PrintArray(T& arr, size_t length) {
 	for (size_t i = 0; i < length; i++) {

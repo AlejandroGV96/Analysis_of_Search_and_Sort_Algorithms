@@ -1,4 +1,6 @@
-#include"myDefs.h"
+#include "myDefs.h"
+#include "algorithms.hpp"
+#include "chrono.hpp"
 
 /// <summary>
 ///		Function that will fill the data arrays with values depending on its type ( ordered, reversed or 'random')
@@ -55,7 +57,8 @@ int main() {
 		}
 
 		BubbleSort(DataMatrix[bubble][ordered][n3], size[n3]);
-
+		BubbleSort(DataMatrix[bubble][reversed][n3], size[n3]);
+		BubbleSort(DataMatrix[bubble][random][n3], size[n3]);
 		std::cin.get();
 
 	}
