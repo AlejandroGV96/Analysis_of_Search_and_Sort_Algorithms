@@ -24,12 +24,18 @@
     <ClCompile Include="src\algorithms.hpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\matrixInit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\myDefs.h">
+    <ClInclude Include="src\namedef.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\chrono.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\matrixInit.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

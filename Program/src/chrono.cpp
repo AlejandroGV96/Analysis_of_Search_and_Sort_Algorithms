@@ -18,5 +18,5 @@ void Timer::stop() {
 	auto duration = End - Start;
 	auto ms = duration * 0.001;
 	
-	std::cout << ms << "ms" << std::endl;
+	std::cout << ms << "ms";// << std::endl;
 }

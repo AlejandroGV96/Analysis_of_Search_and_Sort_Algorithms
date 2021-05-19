@@ -1,72 +1,62 @@
-#include "myDefs.h"
+#include "namedef.hpp"
 #include "algorithms.hpp"
 #include "chrono.hpp"
-
-/// <summary>
-///		Function that will fill the data arrays with values depending on its type ( ordered, reversed or 'random')
-/// </summary>
-/// <param name="Matrix"> Data Structure</param>
-/// <param name="alg"> Branch of the data structure (insertion, bubble, merge...) </param>
-/// <param name="type"> Branch of type of data</param>
-/// <param name="nArr"> Brach of data size</param>
-/// <param name="size"> Size available for storage</param>
-void matrixValFiller(fullDataStructure& Matrix, size_t& alg, size_t& type, size_t&nArr, size_t& size) {
-	for (size_t k = 0; k < size; k++) {
-		switch (type) {
-		case ordered:
-			Matrix[alg][type][nArr][k] = k + 1;
-			break;
-		case reversed:
-			Matrix[alg][type][nArr][k] = size - k;
-			break;
-		case random:
-			Matrix[alg][type][nArr][k] = rand() % size;
-			break;
-		}
-	}
-}
+#include "matrixInit.hpp"
 
 int main() {
+	
+	// Selecting size of arrays base on the first number introduced.
+	size_t size[6]{};
+	std::cin >> size[0];
+	for (size_t i = 1; i < 6; i++) {
+		size[i] = size[0] * (i + 1);
+	}
 
-
-	// possibility to define custom data sizes
-	size_t size[6]{100, 1000, 10000, 100000, 1000000, 10000000};
-	//for (auto i = 0; i < 6; i++) {
-	//	std::cin >> size[i];
-	//}
 	{
 		std::cin.get();
 
 		fullDataStructure DataMatrix = std::make_unique<algorithms[]>(8);
+		dataInit(DataMatrix, size);
 
-		for (size_t i = 0; i < 8; ++i) {
-			std::cout << "Initializing " << i + 1 << "# set of arrays" << std::endl;
-			Timer timer; // setting benchmarking timer
-			DataMatrix[i] = std::make_unique<typeOfData[]>(3);
 
-			std::srand(1); // reseting randomizer
-
-			for (size_t j = 0; j < 3; ++j) {
-				DataMatrix[i][j] = std::make_unique<sixSizesArrays[]>(6);
-
-				for (size_t n = 0; n < 6; ++n) {
-					DataMatrix[i][j][n] = std::make_unique<int[]>(size[n]);
-						matrixValFiller(DataMatrix, i, j, n, size[n]);
+		for (size_t i = 0; i < 3; i++) {
+			std::cout << "|||||||||||" << i+1 << "|||||||||||\n";
+			for (size_t j = 0; j < 3; j++) {
+				std::cout << "-----------" << j+1 << "-----------\n";
+				for (size_t k = 0; k < 6; k++) {
+					switch (i)
+					{
+					case 0:
+						BubbleSort(DataMatrix[i][j][k], size[k]);
+						break;
+					case 1:
+						SelectionSort(DataMatrix[i][j][k], size[k]);
+						break;
+					case 2:
+						InsertionSort(DataMatrix[i][j][k], size[k]);
+						break;
+					default:
+						break;
+					}
+					std::cout << ", ";
 				}
+				std::cout << "\n\n";
 			}
+			std::cout << "\n\n";
 		}
 
-		BubbleSort(DataMatrix[bubble][ordered][n3], size[n3]);
-		BubbleSort(DataMatrix[bubble][reversed][n3], size[n3]);
-		BubbleSort(DataMatrix[bubble][random][n3], size[n3]);
 		std::cin.get();
-
 	}
 	std::cin.get();
-
-
 }
 
+/*
+	TODO:
+		- Define a log function to send time results to a .csv file. 
+		- Implement the rest of algorithms required
+		- Think of a  way to test the search algorithms
+		- Create a loop of the whole program to see how memory behaves(maybe find a memory leak?)
+*/
 
 /*
 	REFERENCES:

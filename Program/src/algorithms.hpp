@@ -1,5 +1,5 @@
 #pragma once
-#include "myDefs.h"
+#include "namedef.hpp"
 #include "chrono.hpp"
 
 template<typename T>
@@ -11,8 +11,11 @@ void SwapValues(T& x, T& y);
 template<typename T>
 void BubbleSort(T& arr, size_t length);
 
+template <typename T>
+void SelectionSort(T& arr,size_t length);
 
-
+template <typename T>
+void InsertionSort(T& arr, size_t length);
 
 // ---------------------IMPLEMENTATIONS--------------------------
 
@@ -31,6 +34,7 @@ void SwapValues(T& x, T& y) {
 	y = temp;
 }
 
+// Bubble Sort Algorithm
 template<typename T>
 void BubbleSort(T& arr, size_t length) {
 	Timer timer;
@@ -44,5 +48,38 @@ void BubbleSort(T& arr, size_t length) {
 			}
 		}
 		if (!swapped) break;
+	}
+}
+
+// Selection Sort Algorithm
+template <typename T>
+void SelectionSort(T& arr, size_t length) {
+	Timer timer;
+	int minimal{};
+	for (size_t i = 0; i < length; i++) {
+		minimal = i;
+		for (size_t j = i + 1; j < length; j++) {
+			if (arr[minimal] > arr[j]) minimal = j;
+		}
+		if (minimal != i) SwapValues(arr[i], arr[minimal]);
+	}
+}
+
+// Insertion Sort Algorithm
+template <typename T>
+void InsertionSort(T& arr, size_t length) {
+	Timer timer;
+
+	int j{};
+	int k{};
+
+	for (size_t i = 1; i < length; i++) {
+		k = arr[i];
+		j = i - 1;
+		while (j >= 0 && arr[j] > k) {
+			arr[j + 1] = arr[j];
+			j--;
+		}
+		arr[j + 1] = k;
 	}
 }

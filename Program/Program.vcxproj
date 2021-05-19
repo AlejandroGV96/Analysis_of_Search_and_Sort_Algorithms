@@ -154,10 +154,12 @@
     <ClCompile Include="src\algorithms.hpp" />
     <ClCompile Include="src\chrono.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\matrixInit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\chrono.hpp" />
-    <ClInclude Include="src\myDefs.h" />
+    <ClInclude Include="src\matrixInit.hpp" />
+    <ClInclude Include="src\namedef.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
