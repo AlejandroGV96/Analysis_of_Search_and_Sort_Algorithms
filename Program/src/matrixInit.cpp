@@ -1,14 +1,17 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
 #include "matrixInit.hpp"
 #include "namedef.hpp"
 
-void matrixValFiller(fullDataStructure& Matrix, size_t& alg, size_t& type, size_t& nArr, size_t& size) {
+void matrixValFiller(fullDataStructure& Matrix, size_t alg, size_t type, size_t nArr, size_t size) {
 	for (size_t k = 0; k < size; k++) {
 		switch (type) {
 		case ordered:
-			Matrix[alg][type][nArr][k] = k + 1;
+			Matrix[alg][type][nArr][k] = int(k + 1);
 			break;
 		case reversed:
-			Matrix[alg][type][nArr][k] = size - k;
+			Matrix[alg][type][nArr][k] = int(size - k);
 			break;
 		case random:
 			Matrix[alg][type][nArr][k] = rand() % size;
