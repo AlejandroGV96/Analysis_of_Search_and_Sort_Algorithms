@@ -6,9 +6,6 @@
 
 Timer::Timer() : m_StartTimePoint{ std::chrono::high_resolution_clock::now() } {}
 
-Timer::~Timer() {
-	stop();
-}
 
 void Timer::stop() {
 	auto endTimePoint = std::chrono::high_resolution_clock::now();
