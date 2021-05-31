@@ -4,12 +4,16 @@
 #pragma once
 #include "namedef.hpp"
 #include "chrono.hpp"
+#include <algorithm>
 
 template<typename T>
 void PrintArray(T& arr, size_t length);
 
 template<typename T>
 void SwapValues(T& x, T& y);
+
+template<typename T>
+int partition(T& a, int s, int e);
 
 template<typename T>
 void BubbleSort(T& arr, size_t length);
@@ -19,6 +23,10 @@ void SelectionSort(T& arr,size_t length);
 
 template <typename T>
 void InsertionSort(T& arr, size_t length);
+
+template <typename T>
+void QuickSort(T& a, int s, int e);
+
 
 // ---------------------IMPLEMENTATIONS--------------------------
 
@@ -36,10 +44,25 @@ void SwapValues(T& x, T& y) {
 	y = temp;
 }
 
+template<typename T>
+int partition(T& arr, int l, int h)
+{
+	int x = arr[(size_t)h];
+	int i = (l - 1);
+
+	for (int j = l; j <= h - 1; j++) {
+		if (arr[(size_t)j] <= x) {
+			i++;
+			SwapValues(arr[(size_t)i], arr[(size_t)j]);
+		}
+	}
+	SwapValues(arr[(size_t)i + 1], arr[(size_t)h]);
+	return (i + 1);
+}
+
 // Bubble Sort Algorithm
 template<typename T>
 void BubbleSort(T& arr, size_t length) {
-	Timer timer;
 	bool swapped{};
 	for (size_t i = 0; i < length - 1; i++) {
 		swapped = false;
@@ -56,7 +79,6 @@ void BubbleSort(T& arr, size_t length) {
 // Selection Sort Algorithm
 template <typename T>
 void SelectionSort(T& arr, size_t length) {
-	Timer timer;
 	size_t minimal{};
 	for (size_t i = 0; i < length; i++) {
 		minimal = i;
@@ -70,7 +92,6 @@ void SelectionSort(T& arr, size_t length) {
 // Insertion Sort Algorithm
 template <typename T>
 void InsertionSort(T& arr, size_t length) {
-	Timer timer;
 
 	size_t j{};
 	int k{};
@@ -87,4 +108,44 @@ void InsertionSort(T& arr, size_t length) {
 		}
 		arr[j + 1] = k;
 	}
+}
+
+template<typename T>
+void QuickSort(T& arr, int l, int h)
+{
+	// Create an auxiliary stack
+	int *stack = new int[(size_t)h - (size_t)l + 1];
+
+	// initialize top of stack
+	int top = -1;
+
+	// push initial values of l and h to stack
+	stack[++top] = l;
+	stack[++top] = h;
+
+	// Keep popping from stack while is not empty
+	while (top >= 0) {
+		// Pop h and l
+		h = stack[(size_t)top--];
+		l = stack[(size_t)top--];
+
+		// Set pivot element at its correct position
+		// in sorted array
+		int p = partition(arr, l, h);
+
+		// If there are elements on left side of pivot,
+		// then push left side to stack
+		if (p - 1 > l) {
+			stack[(size_t)++top] = l;
+			stack[(size_t)++top] = p - 1;
+		}
+
+		// If there are elements on right side of pivot,
+		// then push right side to stack
+		if (p + 1 < h) {
+			stack[(size_t)++top] = p + 1;
+			stack[(size_t)++top] = h;
+		}
+	}
+	delete[] stack;
 }
