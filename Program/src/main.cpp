@@ -22,32 +22,39 @@ int main() {
 		dataInit(DataMatrix, size);
 
 
-		for (size_t i = 0; i < 3; i++) {
+		for (size_t i = 0; i <= BinarySearch; i++) {
 			std::cout << "|||||||||||" << i+1 << "|||||||||||\n";
 			for (size_t j = 0; j < 3; j++) {
 				std::cout << "-----------" << j+1 << "-----------\n";
 				for (size_t k = 0; k < 6; k++) {
+					Timer timer;
 					switch (i)
 					{
 					case 0:
 						BubbleSort(DataMatrix[i][j][k], size[k]);
+						timer.stop();
 						break;
 					case 1:
 						SelectionSort(DataMatrix[i][j][k], size[k]);
+						timer.stop();
 						break;
 					case 2:
 						InsertionSort(DataMatrix[i][j][k], size[k]);
+						timer.stop();
+						break;
+					case 3:
+						QuickSort(DataMatrix[i][j][k],0, (int)size[k] - 1);
+						timer.stop();
 						break;
 					default:
 						break;
 					}
-					std::cout << ", ";
+					std::cout << " ";
 				}
 				std::cout << "\n\n";
 			}
 			std::cout << "\n\n";
 		}
-
 		std::cin.get();
 	}
 	std::cin.get();
@@ -72,4 +79,6 @@ int main() {
 		-Benchmarking with chrono
 		https://www.youtube.com/watch?v=YG4jexlSAjc
 
+		- Iterative quick sort
+		https://www.geeksforgeeks.org/iterative-quick-sort/
 */
