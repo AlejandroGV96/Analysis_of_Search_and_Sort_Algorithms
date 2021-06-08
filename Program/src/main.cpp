@@ -22,32 +22,52 @@ int main() {
 		dataInit(DataMatrix, size);
 
 
-		for (size_t i = 0; i <= BinarySearch; i++) {
+		for (size_t i = bubble; i <= BinarySearch; i++) {
 			std::cout << "|||||||||||" << i+1 << "|||||||||||\n";
 			for (size_t j = 0; j < 3; j++) {
 				std::cout << "-----------" << j+1 << "-----------\n";
 				for (size_t k = 0; k < 6; k++) {
-					Timer timer;
-					switch (i)
-					{
-					case 0:
-						BubbleSort(DataMatrix[i][j][k], size[k]);
-						timer.stop();
-						break;
-					case 1:
-						SelectionSort(DataMatrix[i][j][k], size[k]);
-						timer.stop();
-						break;
-					case 2:
-						InsertionSort(DataMatrix[i][j][k], size[k]);
-						timer.stop();
-						break;
-					case 3:
-						QuickSort(DataMatrix[i][j][k],0, (int)size[k] - 1);
-						timer.stop();
-						break;
-					default:
-						break;
+					if (i >= linearSearch && j == 0) {  // Search Algorithms ( With only ordered arrays)
+						Timer timer;
+						switch (i) {
+						case linearSearch:
+							//linearSearch(DataMatrix[i][j][k], size[k]);
+							timer.stop();
+							break;
+						case BinarySearch:
+							//binarySearch(DataMatrix[i][j][k], size[k]);
+							timer.stop();
+							break;
+						}
+					}
+					else {
+						Timer timer;
+						switch (i) {
+						case bubble:
+							BubbleSort(DataMatrix[i][j][k], size[k]);
+							timer.stop();
+							break;
+						case selection:
+							SelectionSort(DataMatrix[i][j][k], size[k]);
+							timer.stop();
+							break;
+						case insertion:
+							InsertionSort(DataMatrix[i][j][k], size[k]);
+							timer.stop();
+							break;
+						case quick:
+							QuickSort(DataMatrix[i][j][k], 0, (int)size[k] - 1);
+							timer.stop();
+							break;
+						case mergeTopDown:
+							mergeSortTpDwn(DataMatrix[i][j][k], 0, (int)size[k] - 1);
+							timer.stop();
+							break;
+						case mergeBottomUp:
+							mergeSortBtmUp(DataMatrix[i][j][k], (int)size[k]);
+							timer.stop();
+							break;
+						}
 					}
 					std::cout << " ";
 				}
@@ -55,6 +75,7 @@ int main() {
 			}
 			std::cout << "\n\n";
 		}
+		PrintArray(DataMatrix[linearSearch][ordered][n1],size[n1]);
 		std::cin.get();
 	}
 	std::cin.get();
