@@ -9,8 +9,6 @@ enum MatrixInfo
 	quick,
 	mergeTopDown,
 	mergeBottomUp,
-	linearSearch,
-	BinarySearch,
 
 	ordered = 0,
 	reversed,
