@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="src\algorithms.hpp" />
     <ClCompile Include="src\chrono.cpp" />
+    <ClCompile Include="src\dataOutput.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\matrixInit.cpp" />
   </ItemGroup>
