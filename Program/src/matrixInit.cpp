@@ -21,7 +21,6 @@ void matrixValFiller(fullDataStructure& Matrix, size_t alg, size_t type, size_t 
 }
 void dataInit(fullDataStructure& DataMatrix,size_t size[]) {
 
-	// For Sorting Algorithms
 	for (size_t i = bubble; i <= mergeBottomUp; ++i) {
 		DataMatrix[i] = std::make_unique<typeOfData[]>(3);
 	
@@ -37,13 +36,4 @@ void dataInit(fullDataStructure& DataMatrix,size_t size[]) {
 		}
 	}
 
-	// For Searching Algorithms
-	for (size_t i = linearSearch; i <= BinarySearch; ++i) {
-		DataMatrix[i] = std::make_unique<typeOfData[]>(1);
-		DataMatrix[i][ordered] = std::make_unique<sixSizesArrays[]>(6);
-		for (size_t arrSize = 0; arrSize < 6; ++arrSize) {
-			DataMatrix[i][0][arrSize] = std::make_unique<int[]>(size[arrSize]);
-			matrixValFiller(DataMatrix, i, ordered, arrSize, size[arrSize]);
-		}
-	}
 }
