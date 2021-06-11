@@ -4,91 +4,78 @@
 #include "namedef.hpp"
 #include "algorithms.hpp"
 #include "chrono.hpp"
+#include "dataOutput.cpp"
 #include "matrixInit.hpp"
+
+void algorithmSelection(fullDataStructure& DataMatrix, size_t i, size_t j, size_t k, size_t* size, MyPrinter& print);
 
 int main() {
 	
-	// Selecting size of arrays base on the first number introduced.
 	size_t size[6]{};
 	std::cin >> size[0];
-	for (size_t i = 1; i < 6; i++) {
-		size[i] = size[0] * (i + 1);
-	}
+	
+	for (size_t i = 1; i < 6; i++) size[i] = size[0] * (i+1);
 
-	{
-		std::cin.get();
+	MyPrinter print;
+	print.initText(size);
 
-		fullDataStructure DataMatrix = std::make_unique<algorithms[]>(8);
-		dataInit(DataMatrix, size);
+	std::cin.get();
 
+	fullDataStructure DataMatrix = std::make_unique<algorithms[]>(6);
+	dataInit(DataMatrix, size);
 
-		for (size_t i = bubble; i <= BinarySearch; i++) {
-			std::cout << "|||||||||||" << i+1 << "|||||||||||\n";
-			for (size_t j = 0; j < 3; j++) {
-				std::cout << "-----------" << j+1 << "-----------\n";
-				for (size_t k = 0; k < 6; k++) {
-					if (i >= linearSearch && j == 0) {  // Search Algorithms ( With only ordered arrays)
-						Timer timer;
-						switch (i) {
-						case linearSearch:
-							//linearSearch(DataMatrix[i][j][k], size[k]);
-							timer.stop();
-							break;
-						case BinarySearch:
-							//binarySearch(DataMatrix[i][j][k], size[k]);
-							timer.stop();
-							break;
-						}
-					}
-					else {
-						Timer timer;
-						switch (i) {
-						case bubble:
-							BubbleSort(DataMatrix[i][j][k], size[k]);
-							timer.stop();
-							break;
-						case selection:
-							SelectionSort(DataMatrix[i][j][k], size[k]);
-							timer.stop();
-							break;
-						case insertion:
-							InsertionSort(DataMatrix[i][j][k], size[k]);
-							timer.stop();
-							break;
-						case quick:
-							QuickSort(DataMatrix[i][j][k], 0, (int)size[k] - 1);
-							timer.stop();
-							break;
-						case mergeTopDown:
-							mergeSortTpDwn(DataMatrix[i][j][k], 0, (int)size[k] - 1);
-							timer.stop();
-							break;
-						case mergeBottomUp:
-							mergeSortBtmUp(DataMatrix[i][j][k], (int)size[k]);
-							timer.stop();
-							break;
-						}
-					}
-					std::cout << " ";
-				}
-				std::cout << "\n\n";
+	for (size_t i = bubble; i <= mergeBottomUp; i++) {
+		print.title((int)i);
+		for (size_t j = ordered; j <= random; j++) {
+			print.data((int)j);
+			for (size_t k = 0; k < 6; k++) {
+				algorithmSelection(DataMatrix, i, j, k, size, print);
 			}
-			std::cout << "\n\n";
+			print.fileNewLine();
 		}
-		PrintArray(DataMatrix[linearSearch][ordered][n1],size[n1]);
-		std::cin.get();
+		print.fileNewLine();
 	}
+
 	std::cin.get();
 	return 0;
 }
 
-/*
-	TODO:
-		- Define a log function to send time results to a .csv file. 
-		- Implement the rest of algorithms required
-		- Think of a  way to test the search algorithms
-		- Create a loop of the whole program to see how memory behaves(maybe find a memory leak?)
-*/
+void algorithmSelection(fullDataStructure& DataMatrix, size_t i, size_t j, size_t k, size_t* size, MyPrinter& print) {
+	Timer timer;
+	std::string ms;
+	switch (i) {
+	case bubble:
+		BubbleSort(DataMatrix[i][j][k], size[k]);
+		ms = timer.stop();
+		print.timeSpent(ms);
+		break;
+	case selection:
+		SelectionSort(DataMatrix[i][j][k], size[k]);
+		ms = timer.stop();
+		print.timeSpent(ms);
+		break;
+	case insertion:
+		InsertionSort(DataMatrix[i][j][k], size[k]);
+		ms = timer.stop();
+		print.timeSpent(ms);
+		break;
+	case quick:
+		QuickSort(DataMatrix[i][j][k], 0, (int)size[k] - 1);
+		ms = timer.stop();
+		print.timeSpent(ms);
+		break;
+	case mergeTopDown:
+		mergeSortTpDwn(DataMatrix[i][j][k], 0, (int)size[k] - 1);
+		ms = timer.stop();
+		print.timeSpent(ms);
+		break;
+	case mergeBottomUp:
+		mergeSortBtmUp(DataMatrix[i][j][k], (int)size[k]);
+		ms = timer.stop();
+		print.timeSpent(ms);
+		break;
+	}
+}
 
 /*
 	REFERENCES:
