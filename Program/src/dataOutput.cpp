@@ -16,7 +16,7 @@ public:
 		if (datafile.is_open())
 		{
 			datafile << "Num of Integers,";
-			std::cout << "Num of Integers,";
+			std::cout << "Num of Integers: ";
 			for (size_t i = 0; i < 6; i++)
 			{
 				std::cout << "N" << int(i) + 1 << " = " << sizesArr[i] << ", ";
@@ -26,14 +26,14 @@ public:
 			datafile << "\n\n";
 		}
 	}
-	void title(const int& algName) {
+	void title(const size_t& algName) {
 		if (datafile.is_open())
 		{
 			datafile << algorithms[algName] << ",N1,N2,N3,N4,N5,N6\n";
 		}
 		std::cout << algorithms[algName] << ": \n";
 	}
-	void data(const int& data) {
+	void data(const size_t& data) {
 
 		if (datafile.is_open())
 		{

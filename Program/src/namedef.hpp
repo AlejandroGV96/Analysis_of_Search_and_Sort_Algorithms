@@ -25,4 +25,4 @@ enum MatrixInfo
 typedef std::unique_ptr<int[]> sixSizesArrays; // n1 - n6 data sizes
 typedef std::unique_ptr<sixSizesArrays[]> typeOfData; // ordered, reverse and 'random'
 typedef std::unique_ptr<typeOfData[]> algorithms; // algorithms that will sort stored data
-typedef std::unique_ptr<algorithms[]> fullDataStructure; // Data Matrix containing all data
+typedef std::unique_ptr<algorithms[]> fullDataStructure; // Structure containing all data

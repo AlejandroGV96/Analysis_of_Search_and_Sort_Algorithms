@@ -87,17 +87,14 @@ void merge(T& arr, const int& l, const int& m, const int& r) {
 	int n1 = m - l + 1;
 	int n2 = r - m;
 
-	/* create temp arrays */
 	int* L = new int[(size_t)n1];
 	int* R = new int[(size_t)n2];
 
-	/* Copy data to temp arrays L[] and R[] */
 	for (i = 0; i < n1; i++)
 		L[(size_t)i] = arr[(size_t)l + (size_t)i];
 	for (j = 0; j < n2; j++)
 		R[(size_t)j] = arr[(size_t)m + 1 + (size_t)j];
 
-	/* Merge the temp arrays back into arr[l..r]*/
 	i = 0;
 	j = 0;
 	k = l;
@@ -116,7 +113,6 @@ void merge(T& arr, const int& l, const int& m, const int& r) {
 		k++;
 	}
 
-	/* Copy the remaining elements of L[], if there are any */
 	while (i < n1)
 	{
 		arr[(size_t)k] = L[(size_t)i];
@@ -124,7 +120,6 @@ void merge(T& arr, const int& l, const int& m, const int& r) {
 		k++;
 	}
 
-	/* Copy the remaining elements of R[], if there are any */
 	while (j < n2)
 	{
 		arr[(size_t)k] = R[(size_t)j];
@@ -135,7 +130,6 @@ void merge(T& arr, const int& l, const int& m, const int& r) {
 	delete[] R;
 }
 
-// Bubble Sort Algorithm
 template<typename T>
 void BubbleSort(T& arr, size_t length) {
 	bool swapped{};
@@ -151,7 +145,6 @@ void BubbleSort(T& arr, size_t length) {
 	}
 }
 
-// Selection Sort Algorithm
 template <typename T>
 void SelectionSort(T& arr, size_t length) {
 	size_t minimal{};
@@ -164,7 +157,6 @@ void SelectionSort(T& arr, size_t length) {
 	}
 }
 
-// Insertion Sort Algorithm
 template <typename T>
 void InsertionSort(T& arr, size_t length) {
 

@@ -18,6 +18,4 @@ std::string Timer::stop() {
 	auto ms = std::to_string( duration * 0.001);
 	ms.erase(ms.begin() + ms.find_last_not_of('0'), ms.end());
 	return ms;
-	
-	//std::cout << ms << "ms";// << std::endl;
 }

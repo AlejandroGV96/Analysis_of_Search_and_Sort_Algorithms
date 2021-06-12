@@ -10,7 +10,8 @@
 void algorithmSelection(fullDataStructure& DataMatrix, size_t i, size_t j, size_t k, size_t* size, MyPrinter& print);
 
 int main() {
-	
+
+	std::cout << "Empirical Analysis of Sort Algorithms.\n\n	Author: Alejandro Garcia Vera.\n	ID: w63666.\n	Subject: Algorithms and Data Structures.\n	Year of study: First year, second semester.\n\n\The program will measure the time taken to sort sets of arrays.\nEach set contains three subsets of six arrays (with increasing number of elements).\nThe subsets represent different arrangements of data contained (ordered, reversed and random).\nThe used algorithms for each set are the followings:\n -Bubble Sort.\n -Insertion Sort.\n -Selection Sort.\n -Quick Sort.\n -Top-Down Merge Sort.\n -Bottom-Up Merge Sort.\nThe results will be displayed in the console.\nA file called 'results.csv' will be generated storing the results.\n\nThe size of the arrays will be based on the size of the first one.\nPlease provide the size of the first array: ";
 	size_t size[6]{};
 	std::cin >> size[0];
 	
@@ -25,9 +26,9 @@ int main() {
 	dataInit(DataMatrix, size);
 
 	for (size_t i = bubble; i <= mergeBottomUp; i++) {
-		print.title((int)i);
+		print.title(i);
 		for (size_t j = ordered; j <= random; j++) {
-			print.data((int)j);
+			print.data(j);
 			for (size_t k = 0; k < 6; k++) {
 				algorithmSelection(DataMatrix, i, j, k, size, print);
 			}
@@ -76,17 +77,3 @@ void algorithmSelection(fullDataStructure& DataMatrix, size_t i, size_t j, size_
 		break;
 	}
 }
-
-/*
-	REFERENCES:
-
-		-Inspiration for using typedef, to create a smart pointers data structure
-		 that allows automatic deallocation of memory used
-		https://stackoverflow.com/questions/15488470/syntax-for-dynamically-allocating-a-2d-array-of-smart-pointers
-
-		-Benchmarking with chrono
-		https://www.youtube.com/watch?v=YG4jexlSAjc
-
-		- Iterative quick sort
-		https://www.geeksforgeeks.org/iterative-quick-sort/
-*/
